@@ -4,15 +4,16 @@ import {
   Poppins_700Bold,
   useFonts,
 } from "@expo-google-fonts/poppins";
+import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { StatusBar } from "expo-status-bar";
+import "intl";
+import "intl/locale-data/jsonp/pt-BR";
 import React from "react";
-import { StyleSheet } from "react-native";
 import { ThemeProvider } from "styled-components";
 
 import theme from "./src/global/styles/theme";
-
-import Register from "./src/screens/Register";
+import { AppRoutes } from "./src/routes/app.routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,17 +29,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar style="light" />
-      {/* <Dashboard /> */}
-      <Register />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
